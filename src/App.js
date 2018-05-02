@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { createStore } from 'redux';
+import { createStore, compose } from 'redux';
 import { Provider } from 'react-redux';
 import logo from './logo.svg';
 import './App.css';
 
 import rootReducer from './modules';
+import middleware from './middleware';
 
-const store = createStore(
-  rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(rootReducer, composeEnhancers(middleware));
+store.dispatch({ type: 'PRELOAD_DATA' });
 
 class App extends Component {
   render() {
