@@ -2,11 +2,19 @@
 export const COUNTRIES_LOAD_REQUEST = 'COUNTRIES_LOAD_REQUEST';
 export const COUNTRIES_LOAD_SUCCESS = 'COUNTRIES_LOAD_SUCCESS';
 export const COUNTRIES_LOAD_FAILURE = 'COUNTRIES_LOAD_FAILURE';
+export const COUNTRIES_SELECT = 'COUNTRIES_SELECT';
 //#endregion
+
+//#region Actions
+export const selectCountry = countryId => ({
+  type: COUNTRIES_SELECT,
+  payload: countryId
+});
 
 //#region Reducer
 const initialState = {
-  items: []
+  items: [],
+  selectedCountry: ''
 };
 export default (state = initialState, { type, payload }) => {
   switch (type) {
@@ -18,6 +26,12 @@ export default (state = initialState, { type, payload }) => {
           currencyId: preferredCurrency.id,
           name: translations.en || ''
         }))
+      };
+
+    case COUNTRIES_SELECT:
+      return {
+        ...state,
+        selectedCountry: payload
       };
 
     default:
@@ -34,4 +48,15 @@ export default (state = initialState, { type, payload }) => {
  * @param {object} state Redux store's state.
  */
 export const getCountries = state => state.countries.items;
+export const getCountriesOptions = state =>
+  state.countries.items.map(({ id, name }) => ({ value: id, label: name }));
+export const getSelectedCountry = state => state.countries.selectedCountry;
+export const getSelectedCountryCurrency = state => {
+  const countries = getCountries(state);
+  const selectedCountry = getSelectedCountry(state);
+  if (selectedCountry) {
+    return countries.find(c => c.id === selectedCountry).currencyId;
+  }
+  return null;
+};
 //endregion
