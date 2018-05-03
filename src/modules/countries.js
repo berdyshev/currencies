@@ -55,7 +55,8 @@ export const getSelectedCountryCurrency = state => {
   const countries = getCountries(state);
   const selectedCountry = getSelectedCountry(state);
   if (selectedCountry) {
-    return countries.find(c => c.id === selectedCountry).currencyId;
+    const country = countries.find(c => c.id === selectedCountry);
+    return country ? country.currencyId : null;
   }
   return null;
 };

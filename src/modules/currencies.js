@@ -16,7 +16,8 @@ export const selectCurrency = currencyId => ({
 
 //#region Reducer
 const initialState = {
-  items: []
+  items: [],
+  selectedCurrency: ''
 };
 export default (state = initialState, { type, payload }) => {
   switch (type) {
@@ -48,5 +49,5 @@ export const getCurrencies = state => state.currencies.items;
 export const getCurrenciesOptions = state =>
   state.currencies.items.map(({ id, name }) => ({ value: id, label: name }));
 export const getSelectedCurrency = state =>
-  state.currencies.selectCurrency || getSelectedCountryCurrency(state);
+  state.currencies.selectedCurrency || getSelectedCountryCurrency(state);
 //#endregion
