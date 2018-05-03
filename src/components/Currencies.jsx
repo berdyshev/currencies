@@ -16,7 +16,7 @@ import {
   selectCurrency
 } from '../modules/currencies';
 
-class Currencies extends PureComponent {
+export class Currencies extends PureComponent {
   static propTypes = {
     currencies: PropTypes.array.isRequired,
     countries: PropTypes.array.isRequired,

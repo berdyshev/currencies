@@ -10,9 +10,10 @@ export const selectCountry = countryId => ({
   type: COUNTRIES_SELECT,
   payload: countryId
 });
+//#endregion
 
 //#region Reducer
-const initialState = {
+export const initialState = {
   items: [],
   selectedCountry: ''
 };

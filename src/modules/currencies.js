@@ -15,7 +15,7 @@ export const selectCurrency = currencyId => ({
 //#endregion
 
 //#region Reducer
-const initialState = {
+export const initialState = {
   items: [],
   selectedCurrency: ''
 };
