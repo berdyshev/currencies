@@ -1,32 +1,16 @@
-import React, { Component } from 'react';
-import { createStore, compose } from 'redux';
-import { Provider } from 'react-redux';
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
 
-import rootReducer from './modules';
-import middleware from './middleware';
+import Currencies from './components/Currencies';
+import { isDataLoaded } from './modules/ui';
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(rootReducer, composeEnhancers(middleware));
-store.dispatch({ type: 'PRELOAD_DATA' });
+const App = ({ isDataLoaded }) => {
+  return (
+    <Fragment>
+      {!isDataLoaded && <p>Please, wait while data is loading...</p>}
+      {!!isDataLoaded && <Currencies />}
+    </Fragment>
+  );
+};
 
-class App extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Welcome to React</h1>
-          </header>
-          <p className="App-intro">
-            To get started, edit <code>src/App.js</code> and save to reload.
-          </p>
-        </div>
-      </Provider>
-    );
-  }
-}
-
-export default App;
+export default connect(state => ({ isDataLoaded: isDataLoaded(state) }))(App);
