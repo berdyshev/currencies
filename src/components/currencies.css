@@ -1,0 +1,63 @@
+.form-item {
+  margin: 11px 0;
+  display: flex;
+  align-items: center;
+}
+
+.form-item > div.Select {
+  flex-grow: 1;
+}
+
+label {
+  width: 100px;
+  flex-grow: 0;
+}
+
+.Select-control {
+  border: none;
+  border-radius: 5px;
+  background-color: var(--select-bg-color);
+  height: 49px;
+  color: var(--select-text-color);
+}
+
+.Select.is-focused:not(.is-open) > .Select-control,
+.Select.is-open > .Select-control {
+  background-color: var(--select-bg-color);
+  border: none;
+  box-shadow: none;
+}
+
+.Select.has-value.Select--single
+  > .Select-control
+  .Select-value
+  .Select-value-label {
+  color: #4a4a4a;
+}
+
+.Select > .Select-control .Select-value,
+.Select > .Select-control .Select-placeholder,
+.Select > .Select-control .Select-input {
+  line-height: 49px;
+}
+
+.Select-arrow {
+  border-color: var(--select-arrow-color) transparent transparent;
+}
+
+.Select.is-open > .Select-control .Select-arrow {
+  border-bottom-color: var(--select-arrow-color);
+}
+
+.Select-menu-outer {
+  border: none;
+}
+
+.Select-option {
+  background-color: var(--select-bg-color);
+}
+
+.Select-option.is-selected,
+.Select-option.is-focused {
+  background-color: var(--select-bg-focus-color);
+}

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
+import './currencies.css';
 
 import {
   getCountriesOptions,
@@ -40,18 +41,26 @@ class Currencies extends PureComponent {
 
     return (
       <div>
-        <Select
-          name="country"
-          value={selectedCountry}
-          onChange={this.handleCountryChange}
-          options={countries}
-        />
-        <Select
-          name="currencies"
-          value={selectedCurrency}
-          onChange={this.handleCurrencyChange}
-          options={currencies}
-        />
+        <div className="form-item">
+          <label htmlFor="country">Country</label>
+          <Select
+            clearable={false}
+            name="country"
+            value={selectedCountry}
+            onChange={this.handleCountryChange}
+            options={countries}
+          />
+        </div>
+        <div className="form-item">
+          <label htmlFor="currency">Currency</label>
+          <Select
+            clearable={false}
+            name="currency"
+            value={selectedCurrency}
+            onChange={this.handleCurrencyChange}
+            options={currencies}
+          />
+        </div>
       </div>
     );
   }
